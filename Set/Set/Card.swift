@@ -14,16 +14,23 @@ struct Card: View {
     let shape = RoundedRectangle(cornerRadius: 20)
 //        .fill().foregroundColor(.white)
     
+//    let feature1: Color
+//    let feature2: CardShape
+//    let feature3: CardShading
+//    let feature4:
+
+    func featureBuilder(card: SetGameModel.Card) {
+        
+    }
     var body: some View {
         ZStack {
             shape
             shape.fill().foregroundColor(card.isSelected ? .yellow : .gray)
             VStack {
-                Text(card.color.rawValue)
-                Text(card.symbol.rawValue)
-                Text(card.shading.rawValue)
-                Text(card.number.rawValue)
-//                Text(card.isSelected ? "YES" : "NO")
+                Text(card.feature1.rawValue)
+                Text(card.feature2.rawValue)
+                Text(card.feature3.rawValue)
+                Text(card.feature4.rawValue)
             }
         }
         .border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/5/*@END_MENU_TOKEN@*/)
@@ -31,13 +38,12 @@ struct Card: View {
     }
 }
 
+struct CardFeatures {
+    
+}
+
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
-        Card(card: SetGameModel.Card(
-            color: SetGameModel.CardColor.green,
-            symbol: SetGameModel.CardSymbol.oval,
-            shading: SetGameModel.CardShading.striped,
-            number: SetGameModel.CardNumber.two,
-            id: "1"))
+        Card(card: SetGameModel.Card(feature1: .positive, feature2: .positive, feature3: .positive, feature4: .positive, id: 1))
     }
 }
