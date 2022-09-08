@@ -113,6 +113,9 @@ extension Int {
         var n = number
         
         while n > 0 {
+            /// divide the number bu the base, the division remainder is
+            /// the ternery digit starting from the right  with the  division result
+            ///  carrying over to the next iteration. 
             let r = n % base
             returnValue.insert(r, at: 0)
             n /= base
