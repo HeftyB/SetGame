@@ -57,12 +57,12 @@ struct SetGameModel {
     
     mutating func checkForSet() {
         /// get cards + indicies & remove selection
-        let c1 = indiciesOfSelectedCards[0], c2 = indiciesOfSelectedCards[1], c3 = indiciesOfSelectedCards[2]
-        let card1 = cardsOnBoard[c1], card2 = cardsOnBoard[c2], card3 = cardsOnBoard[c3]
+        var indicies = [ indiciesOfSelectedCards[0], indiciesOfSelectedCards[1], indiciesOfSelectedCards[2] ]
+        let card1 = cardsOnBoard[indicies[0]], card2 = cardsOnBoard[indicies[1]], card3 = cardsOnBoard[indicies[2]]
         
-        cardsOnBoard[c1].isSelected = false
-        cardsOnBoard[c2].isSelected = false
-        cardsOnBoard[c3].isSelected = false
+        cardsOnBoard[indicies[0]].isSelected = false
+        cardsOnBoard[indicies[1]].isSelected = false
+        cardsOnBoard[indicies[2]].isSelected = false
         indiciesOfSelectedCards.removeAll()
         
         /// check card1|2|3 for set
@@ -75,7 +75,8 @@ struct SetGameModel {
              ((card1.feature4 == card2.feature4 && card2.feature4 == card3.feature4) ||
              (card1.feature4 != card2.feature4 && card2.feature4 != card3.feature4 && card1.feature4 != card3.feature4))) //// check feature4
         {
-            let newSet = [cardsOnBoard.remove(at: c1), cardsOnBoard.remove(at: c2), cardsOnBoard.remove(at: c3)]
+            indicies.sort()
+            let newSet = [cardsOnBoard.remove(at: indicies[2]), cardsOnBoard.remove(at: indicies[1]), cardsOnBoard.remove(at: indicies[0])]
             
             completedSets.append(newSet)
             dealCards(3)
@@ -83,7 +84,9 @@ struct SetGameModel {
     }
     
     mutating func dealCards(_ numberOfCards: Int) {
+        if deck.isEmpty { return }
         for _ in 1...min(numberOfCards, deck.count) {
+            if deck.isEmpty { break }
             cardsOnBoard.append(deck.removeFirst())
         }
     }

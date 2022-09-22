@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F103B35E28C6C15700D9AF55 /* Diamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103B35D28C6C15700D9AF55 /* Diamond.swift */; };
-		F103B36028C6FE6600D9AF55 /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103B35F28C6FE6600D9AF55 /* ShapeView.swift */; };
+		F103B35E28C6C15700D9AF55 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103B35D28C6C15700D9AF55 /* Shapes.swift */; };
 		F1D179CB28B9A4E1006EDEF2 /* SetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D179CA28B9A4E1006EDEF2 /* SetApp.swift */; };
 		F1D179CD28B9A4E1006EDEF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D179CC28B9A4E1006EDEF2 /* ContentView.swift */; };
 		F1D179CF28B9A4E4006EDEF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1D179CE28B9A4E4006EDEF2 /* Assets.xcassets */; };
@@ -20,8 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F103B35D28C6C15700D9AF55 /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
-		F103B35F28C6FE6600D9AF55 /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
+		F103B35D28C6C15700D9AF55 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		F1D179C728B9A4E1006EDEF2 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1D179CA28B9A4E1006EDEF2 /* SetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetApp.swift; sourceTree = "<group>"; };
 		F1D179CC28B9A4E1006EDEF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,12 +65,11 @@
 				F1D179CC28B9A4E1006EDEF2 /* ContentView.swift */,
 				F1E3283A28BE7A5E00CB78A3 /* Card.swift */,
 				F1D179DB28BAFDD8006EDEF2 /* SetGameModel.swift */,
-				F103B35D28C6C15700D9AF55 /* Diamond.swift */,
+				F103B35D28C6C15700D9AF55 /* Shapes.swift */,
 				F1E3283828BE75E500CB78A3 /* SetGameViewModel.swift */,
 				F1D179CE28B9A4E4006EDEF2 /* Assets.xcassets */,
 				F1D179D028B9A4E4006EDEF2 /* Preview Content */,
 				F1E3283C28BE81F300CB78A3 /* AspectVGrid.swift */,
-				F103B35F28C6FE6600D9AF55 /* ShapeView.swift */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -158,10 +155,9 @@
 				F1D179CD28B9A4E1006EDEF2 /* ContentView.swift in Sources */,
 				F1D179CB28B9A4E1006EDEF2 /* SetApp.swift in Sources */,
 				F1E3283D28BE81F300CB78A3 /* AspectVGrid.swift in Sources */,
-				F103B35E28C6C15700D9AF55 /* Diamond.swift in Sources */,
+				F103B35E28C6C15700D9AF55 /* Shapes.swift in Sources */,
 				F1E3283B28BE7A5E00CB78A3 /* Card.swift in Sources */,
 				F1D179DC28BAFDD8006EDEF2 /* SetGameModel.swift in Sources */,
-				F103B36028C6FE6600D9AF55 /* ShapeView.swift in Sources */,
 				F1E3283928BE75E500CB78A3 /* SetGameViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

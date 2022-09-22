@@ -12,24 +12,30 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Button(action: { print("button 1") }) {
-                    Text("Button")
-                }
-                
-                Button(action: game.deal3) {
-                    Text("Deal 3")
-                }
-            }
-            .padding()
-            
             AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in
-                Card(card: card)
+                Card(card: card,
+                     cardShape: game.cardFeatureBuilder(card: card))
                     .padding(4)
                     .onTapGesture { game.selectCard(card) }
             })
             .padding(.horizontal)
+            
+            HStack {
+                Group {
+                    Button(action: game.newGame) {
+                        Text("New Game")
+                    }
+                    Button(action: game.deal3) {
+                        Text("Deal 3")
+                    }
+                }
+                .border(.black, width: 1)
+                .padding()
+                .background(.brown)
+                .frame(width: 300, height: 200)
+            }
         }
+        .background(.teal)
     }
 }
 

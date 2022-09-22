@@ -7,34 +7,21 @@
 
 import SwiftUI
 
-struct Card: View {
+struct Card<CardSymbol>: View where CardSymbol: View {
     
     let card: SetGameModel.Card
-    
-    let shape = RoundedRectangle(cornerRadius: 20)
-//        .fill().foregroundColor(.white)
-    
-//    let feature1: Color
-//    let feature2: CardShape
-//    let feature3: CardShading
-//    let feature4:
+    let cardBack = RoundedRectangle(cornerRadius: 12)
+    let cardShape: CardSymbol
 
-    func featureBuilder(card: SetGameModel.Card) {
-        
-    }
     var body: some View {
         ZStack {
-            shape
-            shape.fill().foregroundColor(card.isSelected ? .yellow : .gray)
-            VStack {
-                Text(card.feature1.rawValue)
-                Text(card.feature2.rawValue)
-                Text(card.feature3.rawValue)
-                Text(card.feature4.rawValue)
-            }
+            cardBack
+            cardBack.fill().foregroundColor(card.isSelected ? .yellow : .white)
+            
+            cardShape
         }
-        .border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/5/*@END_MENU_TOKEN@*/)
-        
+        .border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: 2)
+        .background(.white)
     }
 }
 
@@ -44,6 +31,8 @@ struct CardFeatures {
 
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
-        Card(card: SetGameModel.Card(feature1: .positive, feature2: .positive, feature3: .positive, feature4: .positive, id: 1))
+        let game = SetGameViewModel()
+        let card = SetGameModel.Card(feature1: .positive, feature2: .positive, feature3: .nuetral, feature4: .negative, id: 1)
+        Card(card: card, cardShape: game.cardFeatureBuilder(card: card))
     }
 }
