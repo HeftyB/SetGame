@@ -27,6 +27,7 @@ struct Diamond: CardShape {
         if striped {
             var p1 = start
             var p2 = start
+            p.move(to: start)
             
             while p1.x < top.x {
                 p1 = slopeIntercept(x: p1.x + interval, slope: slope, yInt: rect.midY)
@@ -72,7 +73,6 @@ struct CardCapsule: CardShape {
         p.addArc(center: CGPoint(x: p4.x, y: p4.y + CGFloat(rad)), radius: CGFloat(rad), startAngle: Angle(degrees: 270), endAngle: Angle(degrees: 90), clockwise: false)
         
         if striped {
-            
             while p.currentPoint!.x < p2.x + 1 {
                 p.addLine(to: CGPoint(x: p.currentPoint!.x, y: p.currentPoint!.y - height))
                 p.move(to: CGPoint(x: p.currentPoint!.x + interval, y: p.currentPoint!.y + height))

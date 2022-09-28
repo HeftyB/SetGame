@@ -16,12 +16,15 @@ struct Card<CardSymbol>: View where CardSymbol: View {
     var body: some View {
         ZStack {
             cardBack
-            cardBack.fill().foregroundColor(card.isSelected ? .yellow : .white)
+            cardBack.fill().foregroundColor(card.isSelected ? .yellow : .accentColor)
             
             cardShape
         }
-        .border(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, width: 2)
-        .background(.white)
+        .border(Color("InnerCardBorderColor"), width: 1)
+        .padding(4)
+        .background(Color("OuterCardBorderColor"))
+        .border(.black)
+        .cornerRadius(7.5)
     }
 }
 
@@ -32,7 +35,7 @@ struct CardFeatures {
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
         let game = SetGameViewModel()
-        let card = SetGameModel.Card(feature1: .positive, feature2: .positive, feature3: .nuetral, feature4: .negative, id: 1)
+        let card = SetGameModel.Card(feature1: .positive, feature2: .positive, feature3: .nuetral, feature4: .positive, id: 1)
         Card(card: card, cardShape: game.cardFeatureBuilder(card: card))
     }
 }

@@ -25,6 +25,8 @@ class SetGameViewModel: ObservableObject {
     
     func newGame() { model = SetGameModel() }
     
+    func completedSets() -> Int { model.completedSets.count }
+    
     /// ///                            |       .negative       |       .nuetral       |       .positive
     ///  ----------------------------------------------------
     /// Feature1: Color            red                          blue                       green
@@ -40,20 +42,20 @@ class SetGameViewModel: ObservableObject {
         switch card.feature2 {
         case .negative:
             let s = cardShading(symbol: CardConstants.CardShape1, feature: card.feature3, color: color)
-            elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar)
+            elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar, color: color)
         case .nuetral:
             let s = cardShading(symbol: CardConstants.CardShape2, feature: card.feature3, color: color)
-            elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar)
+            elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar, color: color)
         case .positive:
             let s = cardShading(symbol: CardConstants.CardShape3, feature: card.feature3, color: color)
-            elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar)
+            elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar, color: color)
         }
     }
     
     /// Matches card's feature-state to Color
     /// - Parameter feature: ThreeState representing card's color
     /// - Returns: Color
-    func cardColor(feature: ThreeState) -> Color {
+    private func cardColor(feature: ThreeState) -> Color {
         switch feature {
         case .negative:
             return CardConstants.CardColor1
@@ -67,7 +69,7 @@ class SetGameViewModel: ObservableObject {
     /// Matches card's feature-state to number (# of times CradShape is displayed)
     /// - Parameter feature: ThreeState representing card's number
     /// - Returns: Int
-    func cardNumber(feature: ThreeState) -> Int {
+    private func cardNumber(feature: ThreeState) -> Int {
         switch feature {
         case .negative:
             return CardConstants.CardNumber1
@@ -84,14 +86,14 @@ class SetGameViewModel: ObservableObject {
     ///   - feature: feature description
     ///   - color: ThreeState representing card's shading
     /// - Returns: CardShape stroked, filled, or striped
-    @ViewBuilder func cardShading<T: CardShape>(symbol: T, feature: ThreeState, color: Color) -> some View {
+    @ViewBuilder private func cardShading<T: CardShape>(symbol: T, feature: ThreeState, color: Color) -> some View {
         switch feature {
         case .negative:
             symbol
                 .fill(color)
         case .nuetral:
             stripe(symbol: symbol)
-                .stroke(color)
+                .stroke(color, lineWidth: 1)
         case .positive:
             symbol
                 .stroke(color)
@@ -101,31 +103,42 @@ class SetGameViewModel: ObservableObject {
     /// Toggles CardShape's striped property
     /// - Parameter symbol: CardShape to be striped
     /// - Returns: CardShape view striped
-    func stripe<T: CardShape>(symbol: T) -> T{
+    private func stripe<T: CardShape>(symbol: T) -> T{
         var s = symbol
         s.striped = true
         return s
     }
     
-    /// Replicates element passed in up to 3 times & applies
+    /// Replicates element passed in up to 3 times & applies an aspect ratio view modifier
     /// - Parameters:
     ///   - element: Element to be replicated
     ///   - count: # of times element should appear in returned VStack
     /// - Returns: VStack containing the Element replicated
-    @ViewBuilder func elementReplicator<T: View>(element: T, count: Int, aspectRatio ar: CGFloat) -> some View {
-        let arElement = element
-            .aspectRatio(ar, contentMode: .fit)
-
-        VStack {
-            Spacer()
-            arElement
-            if count > 1 {
+    @ViewBuilder func elementReplicator<T: View>(element: T, count: Int, aspectRatio ar: CGFloat, color: Color) -> some View {
+        let arElement = element.aspectRatio(ar, contentMode: .fit)
+        
+        VStack(spacing: 0) {
+            Spacer(minLength: 0)
+                Divider()
+                    .frame(height: 4)
+                    .overlay(color)
                 arElement
+            if count > 1 {
+                    Divider()
+                        .frame(height: 4)
+                        .overlay(color)
+                    arElement
             }
             if count > 2 {
-                arElement
+                    Divider()
+                        .frame(height: 4)
+                        .overlay(color)
+                    arElement
             }
-            Spacer()
+                Divider()
+                    .frame(height: 4)
+                    .overlay(color)
+            Spacer(minLength: 0)
         }
     }
     

@@ -11,33 +11,36 @@ struct ContentView: View {
     @ObservedObject var game: SetGameViewModel
     
     var body: some View {
-        VStack {
-            AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in
-                Card(card: card,
-                     cardShape: game.cardFeatureBuilder(card: card))
-                    .padding(4)
-                    .onTapGesture { game.selectCard(card) }
-            })
-            .padding(.horizontal)
-            
+        GeometryReader { geometry in
             HStack {
-                Group {
-                    Button(action: game.newGame) {
-                        Text("New Game")
-                    }
-                    Button(action: game.deal3) {
-                        Text("Deal 3")
-                    }
+                Divider()
+                VStack {
+                    Divider()
+                    TopBar(game: game)
+                        .frame(height: geometry.size.height / 8)
+                    Divider()
+                    /// Card Board
+                    AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in
+                        Card(card: card,
+                             cardShape: game.cardFeatureBuilder(card: card))
+                            .padding(4)
+                            .onTapGesture { game.selectCard(card) }
+                    })
+                    .padding(.horizontal)
+                    
+                    ButtonBar(game: game)
+                    
+                    Divider()
                 }
-                .border(.black, width: 1)
-                .padding()
-                .background(.brown)
-                .frame(width: 300, height: 200)
+                Divider()
             }
+            .background(Color("BoardColor"))
         }
-        .background(.teal)
+        
     }
 }
+
+
 
 
 
