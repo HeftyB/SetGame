@@ -16,7 +16,7 @@ struct ContentView: View {
                 Divider()
                 VStack {
                     Divider()
-                    TopBar(game: game)
+                    TopBar(score: game.completedSets, startTime: game.startTime, status: game.status)
                         .frame(height: geometry.size.height / 8)
                     Divider()
                     /// Card Board
@@ -29,12 +29,13 @@ struct ContentView: View {
                     .padding(.horizontal)
                     
                     ButtonBar(game: game)
+                        .padding(.horizontal)
                     
                     Divider()
                 }
                 Divider()
             }
-            .background(Color("BoardColor"))
+            .background(RadialGradient(colors: [Color("BoardColor"), .black], center: .center, startRadius: min(geometry.size.width, geometry.size.height) * 0.9, endRadius: min(geometry.size.width, geometry.size.height) * 2.3))
         }
         
     }

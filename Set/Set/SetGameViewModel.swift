@@ -15,6 +15,21 @@ class SetGameViewModel: ObservableObject {
     
     var cards: Array<Card> { model.cardsOnBoard }
     
+    var completedSets: Int { model.completedSets.count }
+    
+    var startTime: Date { model.startTime }
+    
+    var status: String {
+        switch model.status {
+        case .select:
+            return "Select a set!"
+        case .match:
+            return "Set match!"
+        case .noMatch:
+            return "No match!"
+        }
+    }
+    
     init() {
         model = SetGameModel()
     }
@@ -25,7 +40,16 @@ class SetGameViewModel: ObservableObject {
     
     func newGame() { model = SetGameModel() }
     
-    func completedSets() -> Int { model.completedSets.count }
+    func getHint() {
+        if let indicies = model.findSet() {
+            model.highlight(index: indicies[0])
+            model.highlight(index: indicies[1])
+            model.highlight(index: indicies[2])
+//            print(indicies)
+        } else {
+            print("Not Found!")
+        }
+    }
     
     /// ///                            |       .negative       |       .nuetral       |       .positive
     ///  ----------------------------------------------------

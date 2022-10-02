@@ -12,25 +12,42 @@ struct ButtonBar: View {
     
     var body: some View {
         HStack {
+            Spacer()
             Button(action: game.newGame) {
-                Text("New Game")
+                VStack {
+                    Image(systemName: "plus.circle")
+                    Text("New Game")
+                        .font(.caption2)
+                }
             }
-            .padding()
-            .background(.red)
-            .border(.black, width: 2)
-            
+            Spacer()
             Button(action: {}) {
-                Text("Hint")
+                VStack {
+                    Image(systemName: "checkmark.circle")
+                    Text("Sets")
+                        .font(.caption2)
+                }
             }
-            .padding()
-            .background(.yellow)
-            
+            Spacer()
+            Button(action: game.getHint) {
+                VStack {
+                    Image(systemName: "suit.diamond")
+                    Text("Hint")
+                        .font(.caption2)
+                }
+            }
+            Spacer()
             Button(action: game.deal3) {
-                Text("Deal 3")
+                VStack {
+                    Image(systemName: "rectangle.portrait")
+                    Text("Deal 3")
+                        .font(.caption2)
+                }
             }
-            .padding()
-            .background(.blue)
+            Spacer()
         }
+        .padding()
+        .background(Color("ButtonBarBackgroundColor"))
     }
 }
 

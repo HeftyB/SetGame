@@ -12,13 +12,15 @@ struct SetGameModel {
     var deck: [Card]
     var cardsOnBoard: [Card]
     var completedSets: [[Card]]
-    var indiciesOfSelectedCards: [Int]
-    
+    private var indiciesOfSelectedCards: [Int]
+    let startTime: Date
+    var status: Status = .select
     init() {
         deck = []
         cardsOnBoard = []
         indiciesOfSelectedCards = []
         completedSets = []
+        startTime = Date()
         
         let ts = ThreeState.allCases
         
@@ -38,7 +40,9 @@ struct SetGameModel {
     }
     
     mutating func selectCard (_ card: Card) {
+        if status != .select { status = .select }
         if let cardIndex = cardsOnBoard.firstIndex(where: {$0.id == card.id}) {
+            cardsOnBoard[cardIndex].isHighlighted = false
             if cardsOnBoard[cardIndex].isSelected {
                 cardsOnBoard[cardIndex].isSelected = false
                 
@@ -78,9 +82,10 @@ struct SetGameModel {
             indicies.sort()
             let newSet = [cardsOnBoard.remove(at: indicies[2]), cardsOnBoard.remove(at: indicies[1]), cardsOnBoard.remove(at: indicies[0])]
             
+            status = .match
             completedSets.append(newSet)
             dealCards(3)
-        } else { print("NO SET!") }
+        } else { status = .noMatch }
     }
     
     mutating func dealCards(_ numberOfCards: Int) {
@@ -91,12 +96,91 @@ struct SetGameModel {
         }
     }
     
+    func findSet() -> [Int]? {
+        for i in 0..<cardsOnBoard.count {
+            for j in (i + 1)..<cardsOnBoard.count {
+                let matchID = setMatchCalculator(card1: cardsOnBoard[i], card2: cardsOnBoard[j])
+                
+                if cardsOnBoard.contains(where: {$0.id == matchID}) {
+                    let index = cardsOnBoard.firstIndex(where: {$0.id == matchID})!
+                    return [i, j, index, matchID]
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    func setMatchCalculator(card1: Card, card2: Card) -> Int {
+        // TODO: refactor
+        let id1 = card1.id,
+            id2 = card2.id,
+            c1f1 = id1[3],
+            c1f2 = id1[2],
+            c1f3 = id1[1],
+            c1f4 = id1[0],
+            c2f1 = id2[3],
+            c2f2 = id2[2],
+            c2f3 = id2[1],
+            c2f4 = id2[0],
+            rf1: Int,
+            rf2: Int,
+            rf3: Int,
+            rf4: Int
+        
+        if c1f1 == c2f1 {
+            rf1 = c1f1 * 1000
+        } else {
+            var arr = [2, 1, 0]
+            arr.remove(at: arr.firstIndex(where: {$0 == c1f1})!)
+            arr.remove(at: arr.firstIndex(where: {$0 == c2f1})!)
+            rf1 = arr[0] * 1000
+        }
+        
+        if c1f2 == c2f2 {
+            rf2 = c1f2 * 100
+        } else {
+            var arr2 = [2, 1, 0]
+            arr2.remove(at: arr2.firstIndex(where: {$0 == c1f2})!)
+            arr2.remove(at: arr2.firstIndex(where: {$0 == c2f2})!)
+            rf2 = arr2[0] * 100
+        }
+        
+        if c1f3 == c2f3 {
+            rf3 = c1f3 * 10
+        } else {
+            var arr3 = [2, 1, 0]
+            arr3.remove(at: arr3.firstIndex(where: {$0 == c1f3})!)
+            arr3.remove(at: arr3.firstIndex(where: {$0 == c2f3})!)
+            rf3 = arr3[0] * 10
+        }
+        
+        if c1f4 == c2f4 {
+            rf4 = c1f4
+        } else {
+            var arr4 = [2, 1, 0]
+            arr4.remove(at: arr4.firstIndex(where: {$0 == c1f4})!)
+            arr4.remove(at: arr4.firstIndex(where: {$0 == c2f4})!)
+            rf4 = arr4[0]
+        }
+        return rf1 + rf2 + rf3 + rf4
+    }
+    
+    mutating func highlight(index: Int) {
+        cardsOnBoard[index].isHighlighted = true
+    }
+    
+    enum Status: String {
+        case select, match, noMatch
+    }
+    
     struct Card: Identifiable {
         let feature1: ThreeState
         let feature2: ThreeState
         let feature3: ThreeState
         let feature4: ThreeState
         var isSelected = false
+        var isHighlighted = false
         var id: Int
     }
 }

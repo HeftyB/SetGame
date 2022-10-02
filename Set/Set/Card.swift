@@ -16,7 +16,12 @@ struct Card<CardSymbol>: View where CardSymbol: View {
     var body: some View {
         ZStack {
             cardBack
-            cardBack.fill().foregroundColor(card.isSelected ? .yellow : .accentColor)
+                .fill()
+                .foregroundColor({
+                    if card.isHighlighted { return Color("CardHighlightColor") }
+                    else if card.isSelected { return Color("CardSelectionColor") }
+                    else { return Color.accentColor }
+                }())
             
             cardShape
         }

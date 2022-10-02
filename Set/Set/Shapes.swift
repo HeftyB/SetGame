@@ -74,6 +74,7 @@ struct CardCapsule: CardShape {
         
         if striped {
             while p.currentPoint!.x < p2.x + 1 {
+                if rect.size.width == 0 && rect.size.height == 0 { break }
                 p.addLine(to: CGPoint(x: p.currentPoint!.x, y: p.currentPoint!.y - height))
                 p.move(to: CGPoint(x: p.currentPoint!.x + interval, y: p.currentPoint!.y + height))
             }
