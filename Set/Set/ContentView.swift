@@ -16,11 +16,11 @@ struct ContentView: View {
                 Divider()
                 VStack {
                     Divider()
-                    TopBar(score: game.completedSets, startTime: game.startTime, status: game.status)
+                    TopBar(score: game.completedSetsCount, startTime: game.startTime, status: game.status)
                         .frame(height: geometry.size.height / 8)
                     Divider()
                     /// Card Board
-                    AspectVGrid(items: game.cards, aspectRatio: 2/3, content: { card in
+                    AspectVGrid(items: game.cards, aspectRatio: SetGameViewModel.CardConstants.cardAspectRatio, content: { card in
                         Card(card: card,
                              cardShape: game.cardFeatureBuilder(card: card))
                             .padding(4)
@@ -37,7 +37,6 @@ struct ContentView: View {
             }
             .background(RadialGradient(colors: [Color("BoardColor"), .black], center: .center, startRadius: min(geometry.size.width, geometry.size.height) * 0.9, endRadius: min(geometry.size.width, geometry.size.height) * 2.3))
         }
-        
     }
 }
 

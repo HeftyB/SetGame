@@ -15,7 +15,9 @@ class SetGameViewModel: ObservableObject {
     
     var cards: Array<Card> { model.cardsOnBoard }
     
-    var completedSets: Int { model.completedSets.count }
+    var completedSetsCount: Int { model.completedSets.count }
+    
+    var completedSets: [SetGameModel.CardSet] { model.completedSets }
     
     var startTime: Date { model.startTime }
     
@@ -166,11 +168,12 @@ class SetGameViewModel: ObservableObject {
         }
     }
     
-    private struct CardConstants {
+    struct CardConstants {
+        static let cardAspectRatio: CGFloat = 2/3
         static let cardShapeAspectRatio: CGFloat = 2/1
         static let CardColor1: Color = .red
         static let CardColor2: Color = .blue
-        static let CardColor3: Color = .green
+        static let CardColor3: Color = Color("CardColor3")
         static let CardNumber1: Int = 1
         static let CardNumber2: Int = 2
         static let CardNumber3: Int = 3

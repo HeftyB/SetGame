@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		F103B35E28C6C15700D9AF55 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103B35D28C6C15700D9AF55 /* Shapes.swift */; };
+		F14D245728EA0C0F00B1E519 /* CompletedSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14D245628EA0C0F00B1E519 /* CompletedSets.swift */; };
 		F157479828E3D4FF0051D0CB /* ButtonBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F157479728E3D4FF0051D0CB /* ButtonBar.swift */; };
 		F157479A28E3D6840051D0CB /* TopBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F157479928E3D6840051D0CB /* TopBar.swift */; };
+		F1581CF428EA889B00B5E3EF /* AspectCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1581CF328EA889B00B5E3EF /* AspectCard.swift */; };
 		F19612EA28E1FD8E0020C56F /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19612E928E1FD8E0020C56F /* Deck.swift */; };
 		F1D179CB28B9A4E1006EDEF2 /* SetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D179CA28B9A4E1006EDEF2 /* SetApp.swift */; };
 		F1D179CD28B9A4E1006EDEF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D179CC28B9A4E1006EDEF2 /* ContentView.swift */; };
@@ -23,8 +25,10 @@
 
 /* Begin PBXFileReference section */
 		F103B35D28C6C15700D9AF55 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		F14D245628EA0C0F00B1E519 /* CompletedSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedSets.swift; sourceTree = "<group>"; };
 		F157479728E3D4FF0051D0CB /* ButtonBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBar.swift; sourceTree = "<group>"; };
 		F157479928E3D6840051D0CB /* TopBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBar.swift; sourceTree = "<group>"; };
+		F1581CF328EA889B00B5E3EF /* AspectCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectCard.swift; sourceTree = "<group>"; };
 		F19612E928E1FD8E0020C56F /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		F1D179C728B9A4E1006EDEF2 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1D179CA28B9A4E1006EDEF2 /* SetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetApp.swift; sourceTree = "<group>"; };
@@ -76,9 +80,11 @@
 				F1D179DB28BAFDD8006EDEF2 /* SetGameModel.swift */,
 				F103B35D28C6C15700D9AF55 /* Shapes.swift */,
 				F1E3283828BE75E500CB78A3 /* SetGameViewModel.swift */,
+				F14D245628EA0C0F00B1E519 /* CompletedSets.swift */,
 				F1D179CE28B9A4E4006EDEF2 /* Assets.xcassets */,
 				F1D179D028B9A4E4006EDEF2 /* Preview Content */,
 				F1E3283C28BE81F300CB78A3 /* AspectVGrid.swift */,
+				F1581CF328EA889B00B5E3EF /* AspectCard.swift */,
 			);
 			path = Set;
 			sourceTree = "<group>";
@@ -165,6 +171,8 @@
 				F1D179CB28B9A4E1006EDEF2 /* SetApp.swift in Sources */,
 				F1E3283D28BE81F300CB78A3 /* AspectVGrid.swift in Sources */,
 				F103B35E28C6C15700D9AF55 /* Shapes.swift in Sources */,
+				F14D245728EA0C0F00B1E519 /* CompletedSets.swift in Sources */,
+				F1581CF428EA889B00B5E3EF /* AspectCard.swift in Sources */,
 				F19612EA28E1FD8E0020C56F /* Deck.swift in Sources */,
 				F157479828E3D4FF0051D0CB /* ButtonBar.swift in Sources */,
 				F1E3283B28BE7A5E00CB78A3 /* Card.swift in Sources */,

@@ -9,21 +9,32 @@ import SwiftUI
 
 struct ButtonBar: View {
     var game: SetGameViewModel
+    @State private var showingCompleted = false
     
     var body: some View {
         HStack {
-            Spacer()
             Button(action: game.newGame) {
                 VStack {
                     Image(systemName: "plus.circle")
-                    Text("New Game")
+                        .foregroundColor(.red)
+                    Text("Reset")
                         .font(.caption2)
                 }
             }
             Spacer()
             Button(action: {}) {
                 VStack {
+                    Image(systemName: "questionmark.circle")
+                        .foregroundColor(.yellow)
+                    Text("Rules")
+                        .font(.caption2)
+                }
+            }
+            Spacer()
+            Button(action: { showingCompleted.toggle() }) {
+                VStack {
                     Image(systemName: "checkmark.circle")
+                        .foregroundColor(.green)
                     Text("Sets")
                         .font(.caption2)
                 }
@@ -32,6 +43,7 @@ struct ButtonBar: View {
             Button(action: game.getHint) {
                 VStack {
                     Image(systemName: "suit.diamond")
+                        .foregroundColor(.yellow)
                     Text("Hint")
                         .font(.caption2)
                 }
@@ -40,14 +52,18 @@ struct ButtonBar: View {
             Button(action: game.deal3) {
                 VStack {
                     Image(systemName: "rectangle.portrait")
-                    Text("Deal 3")
+                        .foregroundColor(Color("CardBackColor"))
+                    Text("+ 3")
                         .font(.caption2)
                 }
             }
-            Spacer()
         }
         .padding()
         .background(Color("ButtonBarBackgroundColor"))
+        .cornerRadius(10)
+        .sheet(isPresented: $showingCompleted) {
+            CompletedSets(game: game)
+        }
     }
 }
 

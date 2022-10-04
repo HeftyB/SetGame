@@ -9,12 +9,12 @@ import Foundation
 
 
 struct SetGameModel {
-    var deck: [Card]
-    var cardsOnBoard: [Card]
-    var completedSets: [[Card]]
+    private (set) var deck: [Card]
+    private(set) var cardsOnBoard: [Card]
+    private (set) var completedSets: [CardSet]
     private var indiciesOfSelectedCards: [Int]
     let startTime: Date
-    var status: Status = .select
+    private (set) var status: Status = .select
     init() {
         deck = []
         cardsOnBoard = []
@@ -83,7 +83,9 @@ struct SetGameModel {
             let newSet = [cardsOnBoard.remove(at: indicies[2]), cardsOnBoard.remove(at: indicies[1]), cardsOnBoard.remove(at: indicies[0])]
             
             status = .match
-            completedSets.append(newSet)
+            let setId = "\(newSet[0].id)\(newSet[1].id)\(newSet[2].id)"
+            let cs = CardSet(card1: newSet[0], card2: newSet[1], card3: newSet[2], id: setId, timeStamp: Date())
+            completedSets.append(cs)
             dealCards(3)
         } else { status = .noMatch }
     }
@@ -182,6 +184,14 @@ struct SetGameModel {
         var isSelected = false
         var isHighlighted = false
         var id: Int
+    }
+    
+    struct CardSet: Identifiable {
+        let card1: Card
+        let card2: Card
+        let card3: Card
+        let id: String
+        let timeStamp: Date
     }
 }
 

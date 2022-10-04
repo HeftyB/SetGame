@@ -45,7 +45,7 @@ struct TopBar: View {
 
 struct TopBar_Previews: PreviewProvider {
     static var previews: some View {
-        TopBar(score: SetGameViewModel().completedSets, startTime: Date(), status: "Match!")
+        TopBar(score: SetGameViewModel().completedSetsCount, startTime: Date(), status: "Match!")
             .frame(height: 150)
     }
 }
