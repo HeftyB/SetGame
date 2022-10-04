@@ -10,6 +10,7 @@ import SwiftUI
 struct ButtonBar: View {
     var game: SetGameViewModel
     @State private var showingCompleted = false
+    @State private var showingRules = false
     
     var body: some View {
         HStack {
@@ -22,7 +23,7 @@ struct ButtonBar: View {
                 }
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: { showingRules.toggle() }) {
                 VStack {
                     Image(systemName: "questionmark.circle")
                         .foregroundColor(.yellow)
@@ -63,6 +64,9 @@ struct ButtonBar: View {
         .cornerRadius(10)
         .sheet(isPresented: $showingCompleted) {
             CompletedSets(game: game)
+        }
+        .sheet(isPresented: $showingRules) {
+            Rules(game: game)
         }
     }
 }
