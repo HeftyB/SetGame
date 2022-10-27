@@ -38,17 +38,9 @@ struct CompletedSets: View {
                 ForEach(game.completedSets) { cardSet in
                     VStack(spacing: 0) {
                         HStack {
-                            AspectCard(aspectRatio: aspectRatio) {
-                                Card(card: cardSet.card1, cardShape: game.cardFeatureBuilder(card: cardSet.card1))
-                            }
-                            
-                            AspectCard(aspectRatio: aspectRatio) {
-                                Card(card: cardSet.card2, cardShape: game.cardFeatureBuilder(card: cardSet.card2))
-                            }
-                            
-                            AspectCard(aspectRatio: aspectRatio) {
-                                Card(card: cardSet.card3, cardShape: game.cardFeatureBuilder(card: cardSet.card3))
-                            }
+                            Card(card: cardSet.card1, cardShape: game.cardFeatureBuilder(card: cardSet.card1))
+                            Card(card: cardSet.card2, cardShape: game.cardFeatureBuilder(card: cardSet.card2))
+                            Card(card: cardSet.card3, cardShape: game.cardFeatureBuilder(card: cardSet.card3))
                         }
                         HStack {
                             Spacer()

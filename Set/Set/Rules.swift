@@ -51,15 +51,9 @@ struct Rules: View {
             Text(label)
                 .fontWeight(.bold)
             HStack {
-                AspectCard(aspectRatio: SetGameViewModel.CardConstants.cardAspectRatio, padding: 4) {
-                    Card (card: c1, cardShape: game.cardFeatureBuilder(card: c1))
-                }
-                AspectCard(aspectRatio: SetGameViewModel.CardConstants.cardAspectRatio, padding: 4) {
-                    Card (card: c2, cardShape: game.cardFeatureBuilder(card: c2))
-                }
-                AspectCard(aspectRatio: SetGameViewModel.CardConstants.cardAspectRatio, padding: 4) {
-                    Card (card: c3, cardShape: game.cardFeatureBuilder(card: c3))
-                }
+                Card (card: c1, cardShape: game.cardFeatureBuilder(card: c1))
+                Card (card: c2, cardShape: game.cardFeatureBuilder(card: c2))
+                Card (card: c3, cardShape: game.cardFeatureBuilder(card: c3))
             }
             
             .padding(.horizontal)
@@ -68,21 +62,39 @@ struct Rules: View {
     }
     
     private struct displayCards {
-        static let color1 = MCard(feature1: .negative, feature2: .negative, feature3: .negative, feature4: .negative, id: 1)
-        static let color2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, id: 2)
-        static let color3 = MCard(feature1: .positive, feature2: .negative, feature3: .negative, feature4: .negative, id: 3)
+        static let status = SetGameModel.Card._UIFaceUp
         
-        static let shape1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, id: 4)
-        static let shape2 = MCard(feature1: .nuetral, feature2: .nuetral, feature3: .negative, feature4: .negative, id: 5)
-        static let shape3 = MCard(feature1: .nuetral, feature2: .positive, feature3: .negative, feature4: .negative, id: 6)
+        static let color1 = MCard(status: status, id: 0)
+        static let color2 = MCard(status: status , id: 1000)
+        static let color3 = MCard(status: status , id: 2000)
         
-        static let shading1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, id: 7)
-        static let shading2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .nuetral, feature4: .negative, id: 8)
-        static let shading3 = MCard(feature1: .nuetral, feature2: .negative, feature3: .positive, feature4: .negative, id: 9)
+        static let shape1 = MCard(status: status , id: 1000)
+        static let shape2 = MCard(status: status , id: 1100)
+        static let shape3 = MCard(status: status , id: 1200)
         
-        static let number1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, id: 9)
-        static let number2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .nuetral, id: 10)
-        static let number3 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .positive, id: 11)
+        static let shading1 = MCard(status: status , id: 1000)
+        static let shading2 = MCard(status: status , id: 1010)
+        static let shading3 = MCard(status: status , id: 1020)
+        
+        static let number1 = MCard(status: status , id: 1000)
+        static let number2 = MCard(status: status , id: 1001)
+        static let number3 = MCard(status: status , id: 1002)
+//
+//        static let color1 = MCard(feature1: .negative, feature2: .negative, feature3: .negative, feature4: .negative, status: status, id: 1)
+//        static let color2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 2)
+//        static let color3 = MCard(feature1: .positive, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 3)
+//
+//        static let shape1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 4)
+//        static let shape2 = MCard(feature1: .nuetral, feature2: .nuetral, feature3: .negative, feature4: .negative, status: status , id: 5)
+//        static let shape3 = MCard(feature1: .nuetral, feature2: .positive, feature3: .negative, feature4: .negative, status: status , id: 6)
+//
+//        static let shading1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 7)
+//        static let shading2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .nuetral, feature4: .negative, status: status , id: 8)
+//        static let shading3 = MCard(feature1: .nuetral, feature2: .negative, feature3: .positive, feature4: .negative, status: status , id: 9)
+//
+//        static let number1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 9)
+//        static let number2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .nuetral, status: status , id: 10)
+//        static let number3 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .positive, status: status , id: 11)
     }
     
 }

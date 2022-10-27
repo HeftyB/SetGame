@@ -13,7 +13,7 @@ class SetGameViewModel: ObservableObject {
     
     typealias Card = SetGameModel.Card
     
-    var cards: Array<Card> { model.cardsOnBoard }
+    var cards: Array<Card> { model.gameCards }
     
     var completedSetsCount: Int { model.completedSets.count }
     
@@ -21,14 +21,21 @@ class SetGameViewModel: ObservableObject {
     
     var startTime: Date { model.startTime }
     
-    var status: String {
-        switch model.status {
-        case .select:
-            return "Select a set!"
-        case .match:
-            return "Set match!"
-        case .noMatch:
-            return "No match!"
+    var deck: [Card] {
+        model.gameCards.filter {
+            !$0.isActive && !$0.isDiscarded
+        }
+    }
+    
+    var cardsOnBoard: [Card] {
+        model.gameCards.filter {
+            $0.isActive
+        }
+    }
+    
+    var discard: [Card] {
+        model.gameCards.filter {
+            !$0.isActive && $0.isDiscarded
         }
     }
     
@@ -36,9 +43,24 @@ class SetGameViewModel: ObservableObject {
         model = SetGameModel()
     }
     
-    func selectCard(_ card: Card) { model.selectCard(card)}
+    func selectCard(_ card: Card) {
+        model.selectCard(card)
+        if model.isSelectedFull {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                self.model.clearSelectedCards()
+            }
+        }
+    }
+    
+    func discardCard(_ card: Card) { model.discardCard(card) }
+    
+    func deal() { model.dealCards(1) }
     
     func deal3(){ model.dealCards(3) }
+    
+    func flipCard(_ card: Card) { model.flipCard(card) }
+    
+    func initialDraw() { model.dealCards(12) }
     
     func newGame() { model = SetGameModel() }
     
@@ -47,7 +69,6 @@ class SetGameViewModel: ObservableObject {
             model.highlight(index: indicies[0])
             model.highlight(index: indicies[1])
             model.highlight(index: indicies[2])
-//            print(indicies)
         } else {
             print("Not Found!")
         }
@@ -67,13 +88,13 @@ class SetGameViewModel: ObservableObject {
         
         switch card.feature2 {
         case .negative:
-            let s = cardShading(symbol: CardConstants.CardShape1, feature: card.feature3, color: color)
+            let s = cardShading(symbol: CardConstants.cardShape1, feature: card.feature3, color: color)
             elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar, color: color)
         case .nuetral:
-            let s = cardShading(symbol: CardConstants.CardShape2, feature: card.feature3, color: color)
+            let s = cardShading(symbol: CardConstants.cardShape2, feature: card.feature3, color: color)
             elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar, color: color)
         case .positive:
-            let s = cardShading(symbol: CardConstants.CardShape3, feature: card.feature3, color: color)
+            let s = cardShading(symbol: CardConstants.cardShape3, feature: card.feature3, color: color)
             elementReplicator(element: s, count: cardNumber(feature: card.feature4), aspectRatio: ar, color: color)
         }
     }
@@ -84,11 +105,11 @@ class SetGameViewModel: ObservableObject {
     private func cardColor(feature: ThreeState) -> Color {
         switch feature {
         case .negative:
-            return CardConstants.CardColor1
+            return CardConstants.cardColor1
         case .nuetral:
-            return CardConstants.CardColor2
+            return CardConstants.cardColor2
         case .positive:
-            return CardConstants.CardColor3
+            return CardConstants.cardColor3
         }
     }
     
@@ -98,11 +119,11 @@ class SetGameViewModel: ObservableObject {
     private func cardNumber(feature: ThreeState) -> Int {
         switch feature {
         case .negative:
-            return CardConstants.CardNumber1
+            return CardConstants.cardNumber1
         case .nuetral:
-            return CardConstants.CardNumber2
+            return CardConstants.cardNumber2
         case .positive:
-            return CardConstants.CardNumber3
+            return CardConstants.cardNumber3
         }
     }
     
@@ -170,15 +191,21 @@ class SetGameViewModel: ObservableObject {
     
     struct CardConstants {
         static let cardAspectRatio: CGFloat = 2/3
+        static let cornerRadius: CGFloat = 7.5
         static let cardShapeAspectRatio: CGFloat = 2/1
-        static let CardColor1: Color = .red
-        static let CardColor2: Color = .blue
-        static let CardColor3: Color = Color("CardColor3")
-        static let CardNumber1: Int = 1
-        static let CardNumber2: Int = 2
-        static let CardNumber3: Int = 3
-        static let CardShape1 = Diamond()
-        static let CardShape2 = CardCapsule()
-        static let CardShape3 = Squiggle()
+        static let cardColor1: Color = .red
+        static let cardColor2: Color = .blue
+        static let cardColor3: Color = Color("CardColor3")
+        static let cardNumber1: Int = 1
+        static let cardNumber2: Int = 2
+        static let cardNumber3: Int = 3
+        static let cardShape1 = Diamond()
+        static let cardShape2 = CardCapsule()
+        static let cardShape3 = Squiggle()
+        static let dealDuration = 1.1
+        static let cardFlipDuration = 1.0
+        static let cardMatchDuration = 0.5
+        static let cardUnMatchDuration = 0.5
+        static let discardDuration = 1.0
     }
 }

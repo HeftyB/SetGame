@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ButtonBar: View {
     var game: SetGameViewModel
-    @State private var showingCompleted = false
     @State private var showingRules = false
     
     var body: some View {
@@ -32,15 +31,6 @@ struct ButtonBar: View {
                 }
             }
             Spacer()
-            Button(action: { showingCompleted.toggle() }) {
-                VStack {
-                    Image(systemName: "checkmark.circle")
-                        .foregroundColor(.green)
-                    Text("Sets")
-                        .font(.caption2)
-                }
-            }
-            Spacer()
             Button(action: game.getHint) {
                 VStack {
                     Image(systemName: "suit.diamond")
@@ -49,22 +39,10 @@ struct ButtonBar: View {
                         .font(.caption2)
                 }
             }
-            Spacer()
-            Button(action: game.deal3) {
-                VStack {
-                    Image(systemName: "rectangle.portrait")
-                        .foregroundColor(Color("CardBackColor"))
-                    Text("+ 3")
-                        .font(.caption2)
-                }
-            }
         }
         .padding()
         .background(Color("ButtonBarBackgroundColor"))
         .cornerRadius(10)
-        .sheet(isPresented: $showingCompleted) {
-            CompletedSets(game: game)
-        }
         .sheet(isPresented: $showingRules) {
             Rules(game: game)
         }
