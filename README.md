@@ -52,4 +52,4 @@ Xcode -> clone existing project -> set dev team -> build
 
 
 
-![Card model diagram](/SetChart.png")
+![Card model diagram](/SetChart.png)
