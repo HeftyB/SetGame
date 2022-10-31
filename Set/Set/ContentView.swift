@@ -13,8 +13,7 @@ struct ContentView: View {
     typealias CardConstants = SetGameViewModel.CardConstants
     
     @ObservedObject var game: SetGameViewModel
-    
-    @State private var start = true
+
     @State private var showingCompleted = false
     @State var playTime = ""
     

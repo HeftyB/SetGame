@@ -79,22 +79,6 @@ struct Rules: View {
         static let number1 = MCard(status: status , id: 1000)
         static let number2 = MCard(status: status , id: 1001)
         static let number3 = MCard(status: status , id: 1002)
-//
-//        static let color1 = MCard(feature1: .negative, feature2: .negative, feature3: .negative, feature4: .negative, status: status, id: 1)
-//        static let color2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 2)
-//        static let color3 = MCard(feature1: .positive, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 3)
-//
-//        static let shape1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 4)
-//        static let shape2 = MCard(feature1: .nuetral, feature2: .nuetral, feature3: .negative, feature4: .negative, status: status , id: 5)
-//        static let shape3 = MCard(feature1: .nuetral, feature2: .positive, feature3: .negative, feature4: .negative, status: status , id: 6)
-//
-//        static let shading1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 7)
-//        static let shading2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .nuetral, feature4: .negative, status: status , id: 8)
-//        static let shading3 = MCard(feature1: .nuetral, feature2: .negative, feature3: .positive, feature4: .negative, status: status , id: 9)
-//
-//        static let number1 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .negative, status: status , id: 9)
-//        static let number2 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .nuetral, status: status , id: 10)
-//        static let number3 = MCard(feature1: .nuetral, feature2: .negative, feature3: .negative, feature4: .positive, status: status , id: 11)
     }
     
 }

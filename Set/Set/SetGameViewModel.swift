@@ -14,11 +14,8 @@ class SetGameViewModel: ObservableObject {
     typealias Card = SetGameModel.Card
     
     var cards: Array<Card> { model.gameCards }
-    
     var completedSetsCount: Int { model.completedSets.count }
-    
     var completedSets: [SetGameModel.CardSet] { model.completedSets }
-    
     var startTime: Date { model.startTime }
     
     var deck: [Card] {
