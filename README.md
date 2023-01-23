@@ -1,7 +1,7 @@
 # SetGame
 ### An iOS application based on the card game Set
 
-A simple card game where one searches for distinct sets of cards. Learn about what makes a set and the game [on the game's Wikipedia](https://en.wikipedia.org/wiki/Set_(card_game)).
+A simple card game where one searches for distinct sets of cards. Learn about the game and what makes a set [on the game's Wikipedia](https://en.wikipedia.org/wiki/Set_(card_game)).
 
 I built this application while completing [Stanford's CS193P](https://cs193p.sites.stanford.edu/) course on building iOS applications using SwiftUI. I took full advantage of Swift's programming patterns, and SwiftUI's intuitive design tools. 
 
